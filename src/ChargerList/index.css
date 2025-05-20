@@ -1,0 +1,40 @@
+.chargerlist {
+    width: 50%;
+    margin-left: 10px;
+
+    div.creator {
+        padding: 20px;
+        float: left;
+        margin-left: -18px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 12px;
+        border: 1px solid #ccc;
+        text-align: left;
+    }
+
+    thead {
+        background-color: #f4f4f4;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+
+    tbody tr:nth-child(odd) {
+        background-color: #ffffff;
+    }
+
+    tr {
+        cursor: pointer;
+    }
+
+}

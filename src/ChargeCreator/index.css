@@ -1,0 +1,21 @@
+.chargeCreator {
+    margin-bottom: 20px;
+    text-align: left;
+
+    button {
+
+        padding: 10px 20px;
+        background-color: lightgrey;
+        font-size: 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+
+    p {
+        font-size: 20px;
+        padding: 25px 10px 10px 0px;
+        margin-left: 10px;
+    }
+}
