@@ -1,10 +1,12 @@
 import './App.css';
 import Home from './home';
+import StateHydrator from './StateHydrator';
 
 function App() {
   return (
     <div className="App">
-      <Home/>
+      <StateHydrator />
+      <Home />
     </div>
   );
 }

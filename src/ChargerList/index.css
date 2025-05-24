@@ -20,6 +20,12 @@
         text-align: left;
     }
 
+    td.nocharger {
+        text-align: center;
+        color: #888;
+        font-style: italic;
+    }
+
     thead {
         background-color: #f4f4f4;
     }
@@ -36,5 +42,7 @@
     tr {
         cursor: pointer;
     }
+
+
 
 }

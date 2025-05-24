@@ -1,32 +1,36 @@
-import { useEffect } from "react";
-import {useSelector, useDispatch} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './index.css';
-import { loadChargerList } from "../reducer";
+import { ERROR, NO_CHARGER_FOUND } from "../utility/constants";
+import { selectChargerId } from '../reducer';
+import { useCallback } from 'react';
 
 const ChargerList = (props) => {
-    const chargerList = useSelector(state => state.chargers.chargerList);
-   
+    const { chargerList, error } = useSelector(state => state.chargers);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const stored = localStorage.getItem('chargerList');
-        const parsed = stored ? JSON.parse(stored) : [];
-        dispatch(loadChargerList(parsed));
+    const selectIdOfCharger = useCallback((chargerId) => {
+        dispatch(selectChargerId({ selectedChargerId: chargerId }));
     }, [dispatch]);
 
-
-    const sendToParent = (chargerId) => {
-        props.sendToParent(chargerId);
-    }
     const getChargerList = () => {
         return chargerList.map((charger) => (
             (
-                <tr onClick={() => sendToParent(charger.id)} key={charger.id}>
+                <tr onClick={() => selectIdOfCharger(charger.id)} key={charger.id}>
                     <td>{charger.id}</td>
                     <td>{charger.state}</td>
                 </tr>
             )
         ))
+    }
+    const noChargerHTML = <tr><td colSpan={2} className="nocharger">{NO_CHARGER_FOUND}</td></tr>;
+    const errorHTML = <tr><td colSpan={2} className="nocharger">{ERROR}</td></tr>;
+
+    const generateHTML = () => {
+        if (error) {
+            return errorHTML;
+        } else {
+            return chargerList && chargerList.length ? getChargerList() : noChargerHTML;
+        }
     }
     return (
         <div className="chargerlist">
@@ -38,7 +42,7 @@ const ChargerList = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    { getChargerList()}
+                    {generateHTML()}
                 </tbody>
             </table>
 

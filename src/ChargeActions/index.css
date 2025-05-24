@@ -22,7 +22,8 @@
             color: #444;
         }
 
-        p:first-of-type {
+        p:first-of-type,
+        p.error {
             color: #888;
             font-style: italic;
         }

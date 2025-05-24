@@ -1,27 +1,35 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
 const chargerSlice = createSlice({
-  name: 'chargers', 
+  name: 'chargers',
   initialState: {
-    chargerList:[],
-  },   
+    chargerList: [],
+    selectedChargerId: 0,
+    error: null
+  },
   reducers: {
     loadChargerList: (state, action) => {
-      state.chargerList= action.payload;
+      state.chargerList = [...action.payload.chargerList];
+      state.error = null;
+      state.selectedChargerId = 0;
     },
     addCharger: (state, action) => {
-      state.chargerList.push(action.payload);
-      localStorage.setItem('chargerList', JSON.stringify(state.chargerList));
+      state.chargerList = [...action.payload.chargerList];
+      state.error = null;
+      state.selectedChargerId = 0;
     },
     updateChargerState: (state, action) => {
-      localStorage.setItem('chargerList', JSON.stringify(action.payload));
-      state.chargerList = [...action.payload];
+      state.chargerList = [...action.payload.chargerList];
+      state.error = null;
+    },
+    selectChargerId: (state, action) => {
+      state.selectedChargerId = action.payload.selectedChargerId;
+    },
+    setLoadError: (state, action) => {
+      state.error = action.payload.error;
     }
   }
 });
 
-export const { loadChargerList, addCharger, updateChargerState } = chargerSlice.actions;
-
-
+export const { loadChargerList, addCharger, updateChargerState, selectChargerId, setLoadError } = chargerSlice.actions;
 export default chargerSlice.reducer;
